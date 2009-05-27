@@ -2,12 +2,12 @@ Summary:	Microcode image for Intel Wireless WiFi Link 5000AGN Adapter
 Summary(pl.UTF-8):	Obraz mikrokodu dla układów bezprzewodowych Intel Wireless WiFi Link 5000AGN
 %define	_module	5000
 Name:		iwlwifi-%{_module}-ucode
-Version:	5.4.A.11
+Version:	8.24.2.12
 Release:	1
 License:	distributable
 Group:		Base/Kernel
-Source0:	http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-%{version}.tar.gz
-# Source0-md5:	748860c5079dde1a1313e72511b9322a
+Source0:	http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-%{version}.tgz
+# Source0-md5:	45f74d052d52f6f473dc7a8d412f2274
 URL:		http://www.intellinuxwireless.org/
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
