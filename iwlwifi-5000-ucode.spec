@@ -3,11 +3,13 @@ Summary(pl.UTF-8):	Obraz mikrokodu dla układów bezprzewodowych Intel Wireless 
 %define	_module	5000
 Name:		iwlwifi-%{_module}-ucode
 Version:	8.24.2.12
-Release:	1
+Release:	2
 License:	distributable
 Group:		Base/Kernel
 Source0:	http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-%{version}.tgz
 # Source0-md5:	45f74d052d52f6f473dc7a8d412f2274
+Source1:        http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-5.4.A.11.tar.gz
+# Source1-md5:	748860c5079dde1a1313e72511b9322a
 URL:		http://www.intellinuxwireless.org/
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -39,13 +41,13 @@ pakietów, zapobiegające docieraniu do komputera pakietów
 niepotrzebnych w danym trybie pracy urządzenia.
 
 %prep
-%setup -q
+%setup -q -a1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/firmware
 
-install iwlwifi-%{_module}-*.ucode $RPM_BUILD_ROOT/lib/firmware
+install {,*/}iwlwifi-%{_module}-*.ucode $RPM_BUILD_ROOT/lib/firmware
 install LICENSE.%{name} $RPM_BUILD_ROOT/lib/firmware/%{name}-LICENSE
 
 %clean
