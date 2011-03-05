@@ -1,17 +1,21 @@
+%bcond_with	exp # experimental, turned on only when such exists
 Summary:	Microcode image for Intel Wireless WiFi Link 5000AGN Adapter
 Summary(pl.UTF-8):	Obraz mikrokodu dla układów bezprzewodowych Intel Wireless WiFi Link 5000AGN
 %define	_module	5000
 Name:		iwlwifi-%{_module}-ucode
 Version:	8.83.5.1
-Release:	1
+Release:	2
 License:	distributable
 Group:		Base/Kernel
-Source0:	http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-8.24.2.12.tgz
-# Source0-md5:	45f74d052d52f6f473dc7a8d412f2274
+Source0:	http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-%{version}.tgz
+# Source0-md5:	da82465019b3c7d1ee5156474ab4931d
 Source1:	http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-5.4.A.11.tar.gz
 # Source1-md5:	748860c5079dde1a1313e72511b9322a
+%if %{with exp}
+# http://www.intellinuxwireless.org/?n=experimental
 Source2:	http://www.intellinuxwireless.org/iwlwifi/downloads/iwlwifi-5000-exp-%{version}.tgz
-# Source3-md5:	xx
+# Source2-md5:	xx
+%endif
 URL:		http://www.intellinuxwireless.org/
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -43,20 +47,20 @@ pakietów, zapobiegające docieraniu do komputera pakietów
 niepotrzebnych w danym trybie pracy urządzenia.
 
 %prep
-%setup -q -c -a1 -a2
+%setup -q -c -a1 %{?with_exp:-a2}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/firmware
 
 install */iwlwifi-%{_module}-*.ucode $RPM_BUILD_ROOT/lib/firmware
-install iwlwifi-5000-ucode-8.2*/LICENSE.%{name} $RPM_BUILD_ROOT/lib/firmware/%{name}-LICENSE
+install iwlwifi-5000-ucode-8.83*/LICENSE.%{name} $RPM_BUILD_ROOT/lib/firmware/%{name}-LICENSE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README* iwlwifi-5000-ucode-8.2*/README*
+%doc iwlwifi-5000-ucode-8.83*/README*
 /lib/firmware/%{name}-LICENSE
 /lib/firmware/*.ucode
