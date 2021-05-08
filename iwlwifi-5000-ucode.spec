@@ -1,3 +1,4 @@
+# NOTE: currently it's included in linux-firmware.spec
 #
 # Conditional build:
 %bcond_with	exp	# experimental, turned on only when such exists
@@ -7,7 +8,7 @@ Summary(pl.UTF-8):	Obraz mikrokodu dla układów bezprzewodowych Intel Wireless 
 %define	_module	5000
 Name:		iwlwifi-%{_module}-ucode
 Version:	8.83.5.1
-Release:	4
+Release:	4.1
 License:	distributable
 Group:		Base/Kernel
 Source0:	http://www.intellinuxwireless.org/iwlwifi/downloads/%{name}-%{version}-1.tgz
