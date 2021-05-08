@@ -1,4 +1,7 @@
-%bcond_with	exp # experimental, turned on only when such exists
+#
+# Conditional build:
+%bcond_with	exp	# experimental, turned on only when such exists
+
 Summary:	Microcode image for Intel Wireless WiFi Link 5000AGN Adapter
 Summary(pl.UTF-8):	Obraz mikrokodu dla układów bezprzewodowych Intel Wireless WiFi Link 5000AGN
 %define	_module	5000
@@ -65,4 +68,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc iwlwifi-5000-ucode-8.83*/README*
 /lib/firmware/%{name}-LICENSE
-/lib/firmware/*.ucode
+/lib/firmware/iwlwifi-5000-*.ucode
